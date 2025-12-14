@@ -1,0 +1,183 @@
+# Firebase Auth Starter
+
+A complete starter template for implementing Firebase Authentication in web applications with both frontend and backend support.
+
+## Project Structure
+
+```
+firebase_starter_auth/
+├── frontend/          # React frontend application
+├── backend/           # Node.js/Express backend API
+├── SPEC.md           # Project specification
+└── README.md         # This file
+```
+
+## Features
+
+### Frontend
+- ✅ Email/Password authentication
+- ✅ Social authentication (Google, GitHub)
+- ✅ Password reset
+- ✅ Email verification
+- ✅ User profile management
+- ✅ Protected routes
+- ✅ Responsive design
+- ✅ Form validation with Zod
+- ✅ React Hook Form integration
+
+### Backend
+- ✅ Firebase Admin SDK integration
+- ✅ Token verification middleware
+- ✅ User management API
+- ✅ Secure endpoints
+- ✅ CORS configuration
+- ✅ Error handling
+
+## Quick Start
+
+### Unified Setup (Recommended)
+
+1. Install all dependencies:
+```bash
+npm run install:all
+```
+
+2. Set up environment variables:
+   - Create `.env.local` in the root directory (see `.env.local.example` for template)
+   - Or if you have `firebase_secrets.json`, run:
+   ```bash
+   npm run setup:env
+   ```
+   This will automatically create `frontend/.env` and `backend/.env` from your root `.env.local` or `firebase_secrets.json`
+
+3. Run both frontend and backend together:
+```bash
+npm run dev
+```
+
+This will start:
+- Frontend on `http://localhost:3000`
+- Backend on `http://localhost:5000`
+
+### Individual Setup (Alternative)
+
+If you prefer to run them separately:
+
+**Frontend:**
+```bash
+cd frontend
+npm install
+cp .env.example .env
+# Edit .env with your Firebase configuration
+npm run dev
+```
+
+**Backend:**
+```bash
+cd backend
+npm install
+cp .env.example .env
+# Edit .env with your Firebase Admin SDK configuration
+npm run dev
+```
+
+## Firebase Configuration
+
+### Unified Configuration (Recommended)
+
+Create a `.env.local` file in the root directory with all your Firebase configuration:
+
+```env
+# Frontend Firebase Configuration
+VITE_FIREBASE_API_KEY=your_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+
+# Backend Configuration
+FIREBASE_PROJECT_ID=your_project_id
+PORT=5000
+NODE_ENV=development
+CORS_ORIGIN=http://localhost:3000
+
+# Backend Firebase Admin SDK
+FIREBASE_PRIVATE_KEY_ID=your_private_key_id
+FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYour key\n-----END PRIVATE KEY-----\n"
+FIREBASE_CLIENT_EMAIL=your_client_email
+# ... (see .env.local.example for full template)
+```
+
+Then run:
+```bash
+npm run setup:env
+```
+
+This will automatically create `frontend/.env` and `backend/.env` from your root `.env.local`.
+
+### Getting Firebase Credentials
+
+**Frontend Configuration:**
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Select your project
+3. Go to Project Settings > General
+4. Scroll down to "Your apps" and add a web app
+5. Copy the configuration values
+
+**Backend Configuration:**
+1. Go to Firebase Console > Project Settings > Service Accounts
+2. Click "Generate new private key"
+3. Copy the values from the downloaded JSON file to your `.env.local`
+
+## Technology Stack
+
+### Frontend
+- React 18
+- Vite
+- React Router
+- Firebase SDK v10
+- React Hook Form
+- Zod
+- CSS3
+
+### Backend
+- Node.js
+- Express
+- Firebase Admin SDK
+- CORS
+- Helmet
+- Morgan
+
+## Documentation
+
+- [Frontend README](frontend/README.md) - Frontend setup and usage
+- [Backend README](backend/README.md) - Backend setup and API documentation
+- [SPEC.md](SPEC.md) - Complete project specification
+
+## Development
+
+### Root Level Commands (Run from root directory)
+- `npm run install:all` - Install dependencies for root, frontend, and backend
+- `npm run dev` - Start both frontend and backend together
+- `npm run dev:frontend` - Start only frontend
+- `npm run dev:backend` - Start only backend
+- `npm run setup:env` - Sync `.env.local` or `firebase_secrets.json` to frontend and backend
+- `npm run build` - Build frontend for production
+- `npm start` - Start both frontend and backend in production mode
+
+### Frontend Commands (Run from frontend directory)
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+### Backend Commands (Run from backend directory)
+- `npm run dev` - Start development server with nodemon
+- `npm start` - Start production server
+- `npm test` - Run tests
+
+## License
+
+MIT
+
