@@ -43,12 +43,17 @@ npm run install:all
 ```
 
 2. Set up environment variables:
-   - Create `.env.local` in the root directory (see `.env.local.example` for template)
-   - Or if you have `firebase_secrets.json`, run:
    ```bash
+   # Copy the example file
+   cp .env.local.example .env.local
+   
+   # Edit .env.local with your Firebase credentials
+   # Then run the setup script:
    npm run setup:env
    ```
-   This will automatically create `frontend/.env` and `backend/.env` from your root `.env.local` or `firebase_secrets.json`
+   This will automatically create `frontend/.env` and `backend/.env` from your root `.env.local`
+   
+   **Alternative:** If you have `firebase_secrets.json`, place it in the root and run `npm run setup:env`
 
 3. Run both frontend and backend together:
 ```bash

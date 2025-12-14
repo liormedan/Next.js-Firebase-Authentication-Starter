@@ -49,7 +49,15 @@ FIREBASE_AUTH_PROVIDER_X509_CERT_URL=https://www.googleapis.com/oauth2/v1/certs
 FIREBASE_CLIENT_X509_CERT_URL=your_cert_url
 `
 } else {
-  console.error('No .env.local or firebase_secrets.json found!')
+  console.error('❌ No .env.local or firebase_secrets.json found!')
+  console.error('')
+  console.error('To get started:')
+  console.error('1. Copy .env.local.example to .env.local:')
+  console.error('   cp .env.local.example .env.local')
+  console.error('2. Fill in your Firebase credentials in .env.local')
+  console.error('3. Run this script again: npm run setup:env')
+  console.error('')
+  console.error('Or if you have firebase_secrets.json, place it in the root directory.')
   process.exit(1)
 }
 
