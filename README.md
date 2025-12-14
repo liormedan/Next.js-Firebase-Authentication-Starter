@@ -229,8 +229,17 @@ function MyComponent() {
 
 1. Push your code to GitHub
 2. Import project in Vercel
-3. Add environment variables in Vercel dashboard
+3. Add environment variables in Vercel dashboard (all `NEXT_PUBLIC_FIREBASE_*` variables)
 4. Deploy!
+5. **Important**: Add your Vercel domain to Firebase authorized domains:
+   - Go to [Firebase Console](https://console.firebase.google.com/)
+   - Select your project
+   - Go to **Authentication > Settings**
+   - Scroll to **"Authorized domains"**
+   - Click **"Add domain"**
+   - Add your Vercel domain (e.g., `your-app.vercel.app`)
+   - If you have a custom domain, add that too
+   - This is **required** for Google Sign-In to work in production
 
 ### Other Platforms
 
