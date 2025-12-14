@@ -186,9 +186,25 @@ This will automatically create `frontend/.env` and `backend/.env` from your root
 
 ## Documentation
 
+### Main Documentation
+- [Documentation Index](docs/README.md) - All documentation files
+- [Project Specification](docs/SPEC.md) - Complete project specification
+- [Quick Start Guide](docs/QUICKSTART.md) - Quick setup instructions
+
+### Setup & Configuration
+- [Setup Checklist](docs/SETUP_CHECKLIST.md) - Setup verification
+- [Firebase Setup](docs/FIREBASE_SETUP.md) - Firebase configuration guide
+- [Firebase Quick Fix](docs/FIREBASE_QUICK_FIX.md) - Common Firebase errors
+
+### Troubleshooting
+- [Troubleshooting Guide](docs/TROUBLESHOOTING.md) - Common issues and solutions
+
+### Reviews & Reports
+- [Production Readiness Report](docs/PRODUCTION_READINESS_REPORT.md) - Production assessment (75/100)
+
+### Project-Specific
 - [Frontend README](frontend/README.md) - Frontend setup and usage
 - [Backend README](backend/README.md) - Backend setup and API documentation
-- [SPEC.md](SPEC.md) - Complete project specification
 
 ## Development
 
