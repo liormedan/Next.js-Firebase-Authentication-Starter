@@ -21,6 +21,9 @@
 ### 🚀 [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)
 מדריך מפורט להעלאת האפליקציה ל-Vercel והגדרת Firebase ל-Production.
 
+### 🌐 [FIREBASE_DOMAINS.md](./FIREBASE_DOMAINS.md)
+הסבר מפורט על מתי צריך לעדכן domains ב-Firebase ומתי לא.
+
 ## מסמכים נוספים
 
 - **README.md** (בשורש הפרויקט) - מדריך ראשי באנגלית עם כל המידע
