@@ -237,8 +237,10 @@ function MyComponent() {
    - Go to **Authentication > Settings**
    - Scroll to **"Authorized domains"**
    - Click **"Add domain"**
-   - Add your Vercel domain (e.g., `your-app.vercel.app`)
-   - If you have a custom domain, add that too
+   - Add your Vercel domain (e.g., `your-app.vercel.app`) - **only once, this domain stays the same**
+   - If you have a custom domain, add that too - **only once**
+   - **Note**: You don't need to update this for every deployment - only when the domain changes
+   - Preview deployment domains are optional - you can add them if you want Google Sign-In to work in previews
    - This is **required** for Google Sign-In to work in production
 
 ### Other Platforms

@@ -44,16 +44,43 @@ NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 
 **זה שלב קריטי!** בלי זה, Google Sign-In לא יעבוד ב-Production.
 
+#### מתי צריך להוסיף Domain?
+
+**לא בכל deployment!** רק כשמשנים את ה-domain:
+
+✅ **צריך להוסיף פעם אחת:**
+- ה-domain הבסיסי של Vercel (למשל: `your-app.vercel.app`) - **פעם אחת בלבד**
+- Custom domain אם יש לך (למשל: `myapp.com`) - **פעם אחת בלבד**
+
+❌ **לא צריך להוסיף:**
+- Preview deployments (למשל: `your-app-git-main-username.vercel.app`) - **לא חובה**
+- כל deployment חדש עם אותו domain - **לא צריך**
+
+#### איך להוסיף Domain?
+
 1. לך ל-[Firebase Console](https://console.firebase.google.com/)
 2. בחר את הפרויקט שלך
 3. לך ל-**Authentication > Settings**
 4. גלול למטה עד **"Authorized domains"**
 5. לחץ על **"Add domain"**
 6. הזן את ה-domain של Vercel שלך:
-   - `your-app.vercel.app` (ה-domain הבסיסי)
-   - אם יש לך custom domain, הוסף גם אותו
+   - `your-app.vercel.app` (ה-domain הבסיסי - **פעם אחת בלבד**)
+   - אם יש לך custom domain, הוסף גם אותו (למשל: `myapp.com`)
 7. לחץ **Add**
 8. **חכה 2-3 דקות** שהשינויים יכנסו לתוקף
+
+#### מה עם Preview Deployments?
+
+- Preview deployments יוצרים domains חדשים (למשל: `your-app-git-feature-branch.vercel.app`)
+- **לא חובה** להוסיף אותם - Google Sign-In יעבוד רק ב-Production domain
+- אם אתה רוצה ש-Google Sign-In יעבוד גם ב-Preview deployments, תוכל להוסיף אותם, אבל זה לא נדרש
+
+#### סיכום
+
+- **Production domain**: הוסף פעם אחת - זה נשאר קבוע
+- **Custom domain**: הוסף פעם אחת אם יש לך
+- **Preview domains**: לא חובה להוסיף
+- **Deployments חדשים**: לא צריך לעדכן כלום אם ה-domain נשאר אותו דבר
 
 ### 6. בדיקה
 
