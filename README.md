@@ -8,7 +8,12 @@ A complete starter template for implementing Firebase Authentication in web appl
 firebase_starter_auth/
 ├── frontend/          # React frontend application
 ├── backend/           # Node.js/Express backend API
-├── SPEC.md           # Project specification
+├── docs/              # All documentation files
+│   ├── SPEC.md        # Project specification
+│   ├── QUICKSTART.md  # Quick start guide
+│   ├── PRODUCTION_READINESS_REPORT.md  # Production assessment
+│   └── ...            # Other documentation
+├── scripts/           # Setup utilities
 └── README.md         # This file
 ```
 
