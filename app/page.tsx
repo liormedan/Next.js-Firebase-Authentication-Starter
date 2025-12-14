@@ -2,29 +2,48 @@
 
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Home() {
   const { currentUser, loading } = useAuth();
   const router = useRouter();
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   useEffect(() => {
-    if (!loading && !currentUser) {
-      router.push("/login");
+    // Wait a bit longer for auth state to settle after redirect
+    if (!loading && !currentUser && !isRedirecting) {
+      setIsRedirecting(true);
+      // Small delay to ensure auth state is checked
+      const timer = setTimeout(() => {
+        router.push("/login");
+      }, 100);
+      return () => clearTimeout(timer);
     }
-  }, [currentUser, loading, router]);
+  }, [currentUser, loading, router, isRedirecting]);
 
-  if (loading) {
+  // Show loading state while checking auth
+  if (loading || isRedirecting) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-xl">Loading...</div>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+          <div className="text-xl text-gray-700 dark:text-gray-300">Loading...</div>
+        </div>
       </div>
     );
   }
 
+  // Show loading while redirecting if not authenticated
   if (!currentUser) {
-    return null;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+          <div className="text-xl text-gray-700 dark:text-gray-300">Redirecting to login...</div>
+        </div>
+      </div>
+    );
   }
 
   return (

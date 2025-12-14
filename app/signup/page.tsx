@@ -48,11 +48,12 @@ export default function Signup() {
       setError("");
       setLoading(true);
       await loginWithGoogle();
-      // Wait a bit for auth state to update, then redirect
+      // Wait for auth state to update, then redirect
       // Using window.location for full page reload to ensure auth state is synced
+      // Increased delay to ensure Firebase auth state is fully updated
       setTimeout(() => {
         window.location.href = "/";
-      }, 500);
+      }, 1000);
     } catch (err: any) {
       setError(err.message || "Failed to sign up with Google");
       setLoading(false);
