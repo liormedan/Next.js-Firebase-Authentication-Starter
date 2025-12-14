@@ -160,8 +160,8 @@ Make sure you've added all Firebase Admin SDK credentials to `.env.local`. The s
 
 ## 📚 Next Steps
 
-- Read [README.md](README.md) for full documentation
+- Read [README.md](../README.md) for full documentation
 - Check [SPEC.md](SPEC.md) for project specification
-- See [frontend/README.md](frontend/README.md) for frontend details
-- See [backend/README.md](backend/README.md) for backend API docs
+- See [Frontend README](../frontend/README.md) for frontend details
+- See [Backend README](../backend/README.md) for backend API docs
 
