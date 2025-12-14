@@ -18,6 +18,9 @@
 ### ⚠️ [CONSOLE_WARNINGS.md](./CONSOLE_WARNINGS.md)
 הסבר על אזהרות נפוצות בקונסול הדפדפן ואיך להתמודד איתן.
 
+### 🚀 [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)
+מדריך מפורט להעלאת האפליקציה ל-Vercel והגדרת Firebase ל-Production.
+
 ## מסמכים נוספים
 
 - **README.md** (בשורש הפרויקט) - מדריך ראשי באנגלית עם כל המידע
