@@ -141,7 +141,7 @@ if (-not $SkipEnv) {
     Write-Info "Step 2: Setting up environment variables..."
     
     $envLocalExists = Test-Path ".env.local"
-    $firebaseSecretsExists = Test-Path "firebase_secrets.json"
+    $firebaseSecretsExists = Test-Path "config\firebase_secrets.json"
     
     if (-not $envLocalExists -and -not $firebaseSecretsExists) {
         Write-Warning ".env.local or firebase_secrets.json not found!"

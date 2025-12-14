@@ -46,7 +46,7 @@ firebase_starter_auth/
 2. Select your project
 3. Click "Authentication" → "Get started"
 4. Enable "Email/Password" and "Google" sign-in methods
-5. See [FIREBASE_QUICK_FIX.md](FIREBASE_QUICK_FIX.md) for detailed instructions
+5. See [Setup Guide](docs/SETUP.md) for detailed instructions
 
 **Without this, you'll get `CONFIGURATION_NOT_FOUND` errors!**
 
