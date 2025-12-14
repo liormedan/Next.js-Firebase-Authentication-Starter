@@ -10,6 +10,8 @@ import {
   GoogleAuthProvider,
   GithubAuthProvider,
   signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   deleteUser,
   sendEmailVerification
 } from 'firebase/auth'
@@ -62,15 +64,19 @@ export const AuthProvider = ({ children }) => {
   }
 
   // Sign in with Google
+  // Using redirect instead of popup to avoid Cross-Origin-Opener-Policy issues
   const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider()
-    return signInWithPopup(auth, provider)
+    // Use redirect mode which is more reliable and doesn't have COOP issues
+    return signInWithRedirect(auth, provider)
   }
 
   // Sign in with GitHub
+  // Using redirect instead of popup to avoid Cross-Origin-Opener-Policy issues
   const signInWithGitHub = () => {
     const provider = new GithubAuthProvider()
-    return signInWithPopup(auth, provider)
+    // Use redirect mode which is more reliable and doesn't have COOP issues
+    return signInWithRedirect(auth, provider)
   }
 
   // Delete account
@@ -78,8 +84,23 @@ export const AuthProvider = ({ children }) => {
     return deleteUser(currentUser)
   }
 
-  // Monitor auth state changes
+  // Monitor auth state changes and handle redirect results
   useEffect(() => {
+    // Check for redirect result (after social auth redirect)
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result) {
+          // User signed in via redirect
+          console.log('User signed in via redirect:', result.user)
+        }
+      })
+      .catch((error) => {
+        // Handle redirect errors silently (user might have cancelled)
+        if (error.code !== 'auth/popup-closed-by-user' && error.code !== 'auth/cancelled-popup-request') {
+          console.error('Redirect auth error:', error)
+        }
+      })
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user)
       setLoading(false)
