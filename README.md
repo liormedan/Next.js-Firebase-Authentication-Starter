@@ -56,12 +56,9 @@ firebase_starter_auth/
 
 **Windows (PowerShell):**
 ```powershell
-.\start.ps1
-```
-
-**Windows (Command Prompt):**
-```cmd
-start.bat
+npm run start:script
+# או ישירות:
+powershell -ExecutionPolicy Bypass -File scripts/start.ps1
 ```
 
 The startup script will:

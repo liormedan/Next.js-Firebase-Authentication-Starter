@@ -13,7 +13,8 @@
     "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
     "start:backend": "cd backend && npm start",
     "start:frontend": "cd frontend && npm run preview",
-    "setup:env": "node scripts/setup-env.js"
+    "setup:env": "node scripts/setup-env.js",
+    "start:script": "powershell -ExecutionPolicy Bypass -File scripts/start.ps1"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

@@ -8,7 +8,7 @@ const rootDir = join(__dirname, '..')
 
 // Read root env.local file
 const envLocalPath = join(rootDir, '.env.local')
-const firebaseSecretsPath = join(rootDir, 'firebase_secrets.json')
+const firebaseSecretsPath = join(rootDir, 'config', 'firebase_secrets.json')
 const serviceAccountPath = join(rootDir, 'backend', 'config', 'serviceAccountKey.json')
 
 let envContent = ''

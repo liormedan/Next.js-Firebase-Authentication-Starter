@@ -35,20 +35,18 @@ build/
 coverage/
 .nyc_output
 
-# Firebase
+# Firebase & Secrets
 serviceAccountKey.json
 config/serviceAccountKey.json
 backend/config/serviceAccountKey.json
 **/serviceAccountKey.json
 *-firebase-adminsdk-*.json
 firebase_secrets.json
+config/firebase_secrets.json
 *.json
 !package.json
 !package-lock.json
 !tsconfig.json
 !tsconfig.*.json
-
-# Startup scripts (keep these)
-!start.ps1
-!start.bat
+!config/firebase_secrets.json.example
 
