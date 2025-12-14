@@ -6,6 +6,14 @@ import Dashboard from '../pages/Dashboard'
 import Profile from '../pages/Profile'
 import PasswordReset from '../pages/PasswordReset'
 
+// React Router v7 future flags to suppress warnings
+const routerConfig = {
+  future: {
+    v7_startTransition: true,
+    v7_relativeSplatPath: true
+  }
+}
+
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth()

@@ -20,26 +20,26 @@ function Write-ColorOutput {
 
 function Write-Success {
     param([string]$Message)
-    Write-ColorOutput "✅ $Message" "Green"
+    Write-ColorOutput "[OK] $Message" "Green"
 }
 
 function Write-Info {
     param([string]$Message)
-    Write-ColorOutput "ℹ️  $Message" "Cyan"
+    Write-ColorOutput "[INFO] $Message" "Cyan"
 }
 
 function Write-Warning {
     param([string]$Message)
-    Write-ColorOutput "⚠️  $Message" "Yellow"
+    Write-ColorOutput "[WARN] $Message" "Yellow"
 }
 
 function Write-Error {
     param([string]$Message)
-    Write-ColorOutput "❌ $Message" "Red"
+    Write-ColorOutput "[ERROR] $Message" "Red"
 }
 
 function Show-Help {
-    Write-ColorOutput @"
+    $helpText = @"
 Firebase Auth Starter - Startup Script
 
 Usage:
@@ -54,7 +54,8 @@ Examples:
     .\start.ps1                    # Full setup and start
     .\start.ps1 -SkipInstall      # Skip npm install
     .\start.ps1 -SkipEnv          # Skip environment setup
-"@ "Cyan"
+"@
+    Write-ColorOutput $helpText "Cyan"
 }
 
 if ($Help) {
@@ -63,13 +64,14 @@ if ($Help) {
 }
 
 # Banner
-Write-ColorOutput @"
+$banner = @"
 
 ╔═══════════════════════════════════════════════════════════╗
 ║         Firebase Auth Starter - Startup Script            ║
 ╚═══════════════════════════════════════════════════════════╝
 
-"@ "Cyan"
+"@
+Write-ColorOutput $banner "Cyan"
 
 # Check if Node.js is installed
 Write-Info "Checking prerequisites..."
@@ -148,7 +150,7 @@ if (-not $SkipEnv) {
         if (Test-Path ".env.local.example") {
             Copy-Item ".env.local.example" ".env.local"
             Write-Success ".env.local created from template"
-            Write-Warning "⚠️  IMPORTANT: Please edit .env.local and add your Firebase credentials!"
+            Write-Warning "[IMPORTANT] Please edit .env.local and add your Firebase credentials!"
             Write-Info "Press any key to continue after editing .env.local..."
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
         } else {
@@ -189,7 +191,7 @@ if ($frontendEnvExists -and $backendEnvExists) {
 
 # Step 4: Start the application
 Write-Info "Step 4: Starting application..."
-Write-ColorOutput @"
+$startMessage = @"
 
 Starting both frontend and backend...
 Frontend will be available at: http://localhost:3000
@@ -197,7 +199,8 @@ Backend will be available at: http://localhost:5000
 
 Press Ctrl+C to stop both servers.
 
-"@ "Cyan"
+"@
+Write-ColorOutput $startMessage "Cyan"
 
 try {
     # Start both frontend and backend
