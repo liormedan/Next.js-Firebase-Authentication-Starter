@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { useAuth } from "@/contexts/AuthContext";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { useRouter } from "next/navigation";
@@ -127,9 +128,11 @@ export default function Profile() {
               <div className="flex items-center gap-6">
                 <div className="relative">
                   {photoURL ? (
-                    <img
+                    <Image
                       src={photoURL}
                       alt="Profile"
+                      width={128}
+                      height={128}
                       className="w-32 h-32 rounded-full object-cover border-4 border-gray-200 dark:border-gray-700"
                     />
                   ) : (
