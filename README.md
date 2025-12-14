@@ -268,10 +268,21 @@ Make sure to:
 - Check that Google Sign-In is enabled if using Google authentication
 - Go to Authentication > Sign-in method in Firebase Console
 
-### Authentication not persisting
+### Authentication not persisting after Google Sign-In
+- **Most Common Issue**: Vercel domain not added to Firebase authorized domains
+- **Solution**:
+  1. Go to Firebase Console > Authentication > Settings
+  2. Scroll to "Authorized domains"
+  3. Add your Vercel domain (e.g., `your-app.vercel.app`)
+  4. If using custom domain, add that too
+  5. Wait a few minutes for changes to propagate
+  6. Try signing in again
+
+### Authentication not persisting (general)
 - Check browser console for errors
 - Verify Firebase configuration is correct
 - Ensure cookies/localStorage are enabled in browser
+- Clear browser cache and cookies, then try again
 
 ### Syntax Error or Hydration Error
 - Usually caused by Firebase configuration errors

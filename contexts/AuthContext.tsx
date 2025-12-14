@@ -61,6 +61,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
       setCurrentUser(user);
       setLoading(false);
+    }, (error) => {
+      // Handle auth state errors
+      console.error("Auth state error:", error);
+      setCurrentUser(null);
+      setLoading(false);
     });
 
     return unsubscribe;
