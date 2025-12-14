@@ -278,6 +278,23 @@ Make sure to:
 - Fix the Firebase configuration first (see above)
 - Clear `.next` folder: `rm -rf .next` (or delete it manually) then restart dev server
 
+### Console Warnings (Not Errors!)
+
+These warnings are normal and don't affect functionality:
+
+**Cross-Origin-Opener-Policy warnings**
+- Appear when using Google Sign-In
+- Normal browser security warnings
+- Google handles this automatically
+- **No action needed** - authentication works fine
+
+**Vercel Analytics deprecation warning**
+- Appears in production on Vercel
+- Related to Vercel's internal analytics
+- **No action needed** - doesn't affect your app
+
+See [docs/CONSOLE_WARNINGS.md](./docs/CONSOLE_WARNINGS.md) for detailed explanations of all console warnings.
+
 ## Advanced Features Setup
 
 This starter includes advanced features for building more complex applications with user data management.
