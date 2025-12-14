@@ -1,35 +1,32 @@
-# 📚 Documentation Index
+# תיקיית מסמכים
 
-Welcome to the Firebase Auth Starter documentation. This directory contains all essential project documentation.
+תיקייה זו מכילה את כל מסמכי התיעוד וההדרכה לפרויקט.
 
-## 📖 Essential Documentation
+## רשימת מסמכים
 
-- **[README.md](../README.md)** - Main project documentation (in root)
-- **[SPEC.md](SPEC.md)** - Complete project specification
-- **[QUICKSTART.md](QUICKSTART.md)** - Quick start guide (5 minutes)
-- **[SETUP.md](SETUP.md)** - Complete setup and configuration guide
+### 📘 [SETUP_HEBREW.md](./SETUP_HEBREW.md)
+מדריך התקנה מפורט בעברית - שלב אחר שלב להגדרת Firebase Authentication.
 
-## 🐛 Troubleshooting
+### 🚀 [ADVANCED_FEATURES.md](./ADVANCED_FEATURES.md)
+מדריך שימוש בתכונות המתקדמות:
+- Firestore Database
+- Firebase Storage
+- User Profile Management
+- Custom Hooks
+- Security Rules
 
-- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues and solutions
+### ⚠️ [CONSOLE_WARNINGS.md](./CONSOLE_WARNINGS.md)
+הסבר על אזהרות נפוצות בקונסול הדפדפן ואיך להתמודד איתן.
 
-## 📊 Reviews & Reports
+## מסמכים נוספים
 
-- **[PRODUCTION_READINESS_REPORT.md](PRODUCTION_READINESS_REPORT.md)** - Production readiness assessment (75/100)
+- **README.md** (בשורש הפרויקט) - מדריך ראשי באנגלית עם כל המידע
+- **firestore.rules** (בשורש הפרויקט) - כללי אבטחה ל-Firestore
+- **storage.rules** (בשורש הפרויקט) - כללי אבטחה ל-Storage
 
-## 📁 Project-Specific Documentation
+## התחלה מהירה
 
-- **[Frontend README](../frontend/README.md)** - Frontend setup and usage
-- **[Backend README](../backend/README.md)** - Backend API documentation
-
-## 🚀 Quick Start
-
-1. **New to the project?** → Start with [QUICKSTART.md](QUICKSTART.md)
-2. **Setting up?** → Follow [SETUP.md](SETUP.md) for complete setup
-3. **Having issues?** → Check [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
-4. **Production ready?** → Review [PRODUCTION_READINESS_REPORT.md](PRODUCTION_READINESS_REPORT.md)
-
----
-
-**Last Updated:** December 14, 2025
+1. לקריאת מדריך התקנה בעברית: [SETUP_HEBREW.md](./SETUP_HEBREW.md)
+2. להבנת תכונות מתקדמות: [ADVANCED_FEATURES.md](./ADVANCED_FEATURES.md)
+3. לפתרון בעיות: [CONSOLE_WARNINGS.md](./CONSOLE_WARNINGS.md)
 

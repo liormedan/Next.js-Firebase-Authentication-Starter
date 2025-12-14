@@ -1,0 +1,76 @@
+"use client";
+
+import { useAuth } from "@/contexts/AuthContext";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import Link from "next/link";
+
+export default function Home() {
+  const { currentUser, loading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loading && !currentUser) {
+      router.push("/login");
+    }
+  }, [currentUser, loading, router]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-xl">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!currentUser) {
+    return null;
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+      <div className="container mx-auto px-4 py-16">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Welcome to Firebase Auth Starter
+            </h1>
+            <p className="text-gray-600 dark:text-gray-300 mb-8">
+              You are successfully authenticated!
+            </p>
+
+            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 mb-6">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                User Information
+              </h2>
+              <div className="space-y-2">
+                <p className="text-gray-700 dark:text-gray-300">
+                  <span className="font-medium">Email:</span> {currentUser.email}
+                </p>
+                <p className="text-gray-700 dark:text-gray-300">
+                  <span className="font-medium">UID:</span> {currentUser.uid}
+                </p>
+                {currentUser.displayName && (
+                  <p className="text-gray-700 dark:text-gray-300">
+                    <span className="font-medium">Display Name:</span>{" "}
+                    {currentUser.displayName}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <Link
+                href="/profile"
+                className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+              >
+                View Profile
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
