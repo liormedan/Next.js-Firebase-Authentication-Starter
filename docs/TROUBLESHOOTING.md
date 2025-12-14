@@ -1,5 +1,7 @@
 # Troubleshooting Guide
 
+מדריך פתרון בעיות מפורט לפרויקט Firebase Auth Starter.
+
 ## Common Issues and Solutions
 
 ### ❌ Error: `auth/invalid-api-key` / White Page
