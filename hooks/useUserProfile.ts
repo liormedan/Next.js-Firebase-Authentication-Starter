@@ -27,9 +27,21 @@ export function useUserProfile() {
       setError(null);
       const userProfile = await getUserProfile(currentUser.uid);
       setProfile(userProfile);
+      // If profile is null (Firestore unavailable), don't set error - just use auth user data
+      if (!userProfile && process.env.NODE_ENV === "development") {
+        console.warn("User profile not found in Firestore. Using auth user data.");
+      }
     } catch (err: any) {
-      setError(err.message || "Failed to load profile");
-      console.error("Error loading profile:", err);
+      // Don't set error for offline/unavailable - just use auth user data
+      if (err?.code === "unavailable" || err?.message?.includes("offline") || err?.message?.includes("timeout")) {
+        setProfile(null); // Will fall back to auth user data
+        if (process.env.NODE_ENV === "development") {
+          console.warn("Firestore unavailable. Using auth user data.");
+        }
+      } else {
+        setError(err.message || "Failed to load profile");
+        console.error("Error loading profile:", err);
+      }
     } finally {
       setLoading(false);
     }

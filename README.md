@@ -295,6 +295,19 @@ Make sure to:
 - Ensure cookies/localStorage are enabled in browser
 - Clear browser cache and cookies, then try again
 
+### "Failed to get document because the client is offline" (Firestore Error)
+- **Important**: This error does NOT block authentication - you can still sign in!
+- **Cause**: Firestore database is not enabled or not properly configured
+- **Solution**:
+  1. Authentication works independently of Firestore
+  2. If you want to use Firestore features (user profiles, etc.):
+     - Go to Firebase Console > Firestore Database
+     - Click "Create database"
+     - Choose "Start in test mode" (or configure security rules)
+     - Wait a few minutes for it to initialize
+  3. If you don't need Firestore, you can ignore this error - authentication will work fine
+- **Note**: The app is designed to work even if Firestore is unavailable - it will use Firebase Auth data instead
+
 ### Syntax Error or Hydration Error
 - Usually caused by Firebase configuration errors
 - Fix the Firebase configuration first (see above)

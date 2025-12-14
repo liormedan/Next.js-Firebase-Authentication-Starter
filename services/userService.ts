@@ -20,12 +20,20 @@ import { UserProfile, UserProfileUpdate } from "@/types/user";
  */
 export async function getUserProfile(uid: string): Promise<UserProfile | null> {
   if (!db) {
-    throw new Error("Firestore is not initialized");
+    console.warn("Firestore is not initialized. Cannot get user profile.");
+    return null;
   }
 
   try {
     const userDocRef = doc(db, "users", uid);
-    const userDocSnap = await getDoc(userDocRef);
+    
+    // Add timeout to prevent hanging
+    const userDocSnap = await Promise.race([
+      getDoc(userDocRef),
+      new Promise((_, reject) => 
+        setTimeout(() => reject(new Error("Firestore request timeout")), 5000)
+      )
+    ]) as any;
 
     if (!userDocSnap.exists()) {
       return null;
@@ -43,14 +51,20 @@ export async function getUserProfile(uid: string): Promise<UserProfile | null> {
       updatedAt: data.updatedAt?.toDate() || new Date(),
       preferences: data.preferences || {},
     };
-  } catch (error) {
+  } catch (error: any) {
+    // Don't throw - return null if Firestore is unavailable
+    if (error?.code === "unavailable" || error?.message?.includes("offline") || error?.message?.includes("timeout")) {
+      console.warn("Firestore is offline or unavailable. Cannot get user profile.");
+      return null;
+    }
     console.error("Error getting user profile:", error);
-    throw error;
+    return null;
   }
 }
 
 /**
  * Create or update user profile in Firestore
+ * This function is non-blocking - it won't throw errors that would block authentication
  */
 export async function createUserProfile(
   uid: string,
@@ -58,36 +72,61 @@ export async function createUserProfile(
   additionalData?: Partial<UserProfile>
 ): Promise<void> {
   if (!db) {
-    throw new Error("Firestore is not initialized");
+    // Firestore not initialized - silently fail, don't block auth
+    console.warn("Firestore is not initialized. User profile will not be created.");
+    return;
   }
 
   try {
     const userDocRef = doc(db, "users", uid);
-    const userDocSnap = await getDoc(userDocRef);
+    
+    // Use getDoc with timeout to prevent hanging
+    const userDocSnap = await Promise.race([
+      getDoc(userDocRef),
+      new Promise((_, reject) => 
+        setTimeout(() => reject(new Error("Firestore request timeout")), 5000)
+      )
+    ]) as any;
 
     if (!userDocSnap.exists()) {
       // Create new profile
-      await setDoc(userDocRef, {
-        uid,
-        email,
-        displayName: additionalData?.displayName || "",
-        photoURL: additionalData?.photoURL || "",
-        bio: additionalData?.bio || "",
-        phoneNumber: additionalData?.phoneNumber || "",
-        preferences: additionalData?.preferences || {},
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp(),
-      });
+      await Promise.race([
+        setDoc(userDocRef, {
+          uid,
+          email,
+          displayName: additionalData?.displayName || "",
+          photoURL: additionalData?.photoURL || "",
+          bio: additionalData?.bio || "",
+          phoneNumber: additionalData?.phoneNumber || "",
+          preferences: additionalData?.preferences || {},
+          createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp(),
+        }),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error("Firestore write timeout")), 5000)
+        )
+      ]);
     } else {
       // Update existing profile
-      await updateDoc(userDocRef, {
-        ...additionalData,
-        updatedAt: serverTimestamp(),
-      });
+      await Promise.race([
+        updateDoc(userDocRef, {
+          ...additionalData,
+          updatedAt: serverTimestamp(),
+        }),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error("Firestore update timeout")), 5000)
+        )
+      ]);
     }
-  } catch (error) {
-    console.error("Error creating user profile:", error);
-    throw error;
+  } catch (error: any) {
+    // Don't throw - just log the error
+    // This ensures authentication still works even if Firestore is unavailable
+    if (error?.code === "unavailable" || error?.message?.includes("offline") || error?.message?.includes("timeout")) {
+      console.warn("Firestore is offline or unavailable. User profile will be created when Firestore is available.");
+    } else {
+      console.error("Error creating user profile:", error);
+    }
+    // Silently fail - don't block authentication
   }
 }
 

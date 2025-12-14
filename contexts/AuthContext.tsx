@@ -47,20 +47,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        // Create user profile in Firestore if it doesn't exist
-        try {
-          await createUserProfile(user.uid, user.email || "", {
-            displayName: user.displayName || "",
-            photoURL: user.photoURL || "",
-          });
-        } catch (error) {
-          console.error("Error creating user profile:", error);
-          // Don't block auth if profile creation fails
-        }
-      }
+      // Set user immediately - don't wait for Firestore
       setCurrentUser(user);
       setLoading(false);
+      
+      // Create user profile in Firestore asynchronously (non-blocking)
+      if (user) {
+        // Don't await - let it run in background
+        createUserProfile(user.uid, user.email || "", {
+          displayName: user.displayName || "",
+          photoURL: user.photoURL || "",
+        }).catch((error) => {
+          // Silently handle errors - don't log to console in production
+          if (process.env.NODE_ENV === "development") {
+            console.warn("User profile creation failed (non-critical):", error);
+          }
+        });
+      }
     }, (error) => {
       // Handle auth state errors
       console.error("Auth state error:", error);
@@ -179,7 +182,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   );
 }

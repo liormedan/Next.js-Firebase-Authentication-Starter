@@ -12,12 +12,13 @@ export default function Home() {
 
   useEffect(() => {
     // Wait a bit longer for auth state to settle after redirect
+    // Give more time in production for auth state to sync
     if (!loading && !currentUser && !isRedirecting) {
       setIsRedirecting(true);
-      // Small delay to ensure auth state is checked
+      // Increased delay to ensure auth state is checked, especially after Google Sign-In
       const timer = setTimeout(() => {
         router.push("/login");
-      }, 100);
+      }, 500);
       return () => clearTimeout(timer);
     }
   }, [currentUser, loading, router, isRedirecting]);
