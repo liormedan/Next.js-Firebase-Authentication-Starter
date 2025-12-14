@@ -2,6 +2,26 @@
 
 ## 🚀 Running the App Together
 
+### Option 1: Automated Startup (Windows - Recommended)
+
+**PowerShell:**
+```powershell
+.\start.ps1
+```
+
+**Command Prompt:**
+```cmd
+start.bat
+```
+
+The script automatically:
+- ✅ Checks prerequisites
+- ✅ Installs dependencies
+- ✅ Sets up environment
+- ✅ Starts both servers
+
+### Option 2: Manual Setup
+
 ### Step 1: Install Dependencies
 
 ```bash

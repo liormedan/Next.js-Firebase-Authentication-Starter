@@ -35,7 +35,25 @@ firebase_starter_auth/
 
 ## Quick Start
 
-### Unified Setup (Recommended)
+### Automated Setup (Recommended - Windows)
+
+**Windows (PowerShell):**
+```powershell
+.\start.ps1
+```
+
+**Windows (Command Prompt):**
+```cmd
+start.bat
+```
+
+The startup script will:
+- ✅ Check prerequisites (Node.js, npm)
+- ✅ Install all dependencies
+- ✅ Set up environment variables
+- ✅ Start both frontend and backend
+
+### Manual Setup
 
 1. Install all dependencies:
 ```bash
