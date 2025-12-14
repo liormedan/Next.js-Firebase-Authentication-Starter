@@ -719,11 +719,17 @@ After setting up the basic features, you can extend the starter with:
 
 ### Firestore Permission Denied Error
 
-- **Cause**: Security rules are blocking the operation
+**Note**: Firestore errors do NOT block authentication. You can sign in even if Firestore is unavailable.
+
+- **Cause**: Security rules are blocking the operation OR Firestore is not enabled
 - **Solution**: 
-  1. Check Firestore Rules in Firebase Console
-  2. Verify the user is authenticated
-  3. Ensure the user has permission for the operation
+  1. If Firestore is not enabled:
+     - Go to Firebase Console > Firestore Database
+     - Click "Create database" and follow the setup
+  2. If Firestore is enabled but you get permission errors:
+     - Check Firestore Rules in Firebase Console
+     - Verify the user is authenticated
+     - Ensure the user has permission for the operation
 
 ### Storage Upload Fails
 
