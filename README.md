@@ -33,6 +33,18 @@ firebase_starter_auth/
 - ✅ CORS configuration
 - ✅ Error handling
 
+## ⚠️ Important: Enable Firebase Authentication First!
+
+**Before running the app, you MUST enable Authentication in Firebase Console:**
+
+1. Go to https://console.firebase.google.com/
+2. Select your project
+3. Click "Authentication" → "Get started"
+4. Enable "Email/Password" and "Google" sign-in methods
+5. See [FIREBASE_QUICK_FIX.md](FIREBASE_QUICK_FIX.md) for detailed instructions
+
+**Without this, you'll get `CONFIGURATION_NOT_FOUND` errors!**
+
 ## Quick Start
 
 ### Automated Setup (Recommended - Windows)
